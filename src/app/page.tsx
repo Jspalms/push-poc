@@ -1,8 +1,8 @@
 import { DeleteUsersButton } from "@/components/DeleteUsersButton";
-import { PermissionsButton } from "@/components/PermissionsButton";
-import { SendPushNotificationButton } from "@/components/SendNotificationButton";
+import { PermissionsForm } from "@/components/PermissionsForm";
 import Users from "@/components/Users";
 import { PrismaClient } from "@prisma/client";
+import Head from "next/head";
 
 async function getUsers() {
   const db = new PrismaClient();
@@ -16,8 +16,7 @@ export default async function Home() {
   return (
     <main className="container mx-auto">
       <Users users={users} />
-      <PermissionsButton />
-      <SendPushNotificationButton />
+      <PermissionsForm />
       <DeleteUsersButton />
     </main>
   );

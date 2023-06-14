@@ -1,14 +1,12 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
+import { prismaClient } from "../lib/prismaClient";
 
 const webpush = require("web-push");
 
-export async function sendPushNotification(formData: FormData) {
-  const db = new PrismaClient();
-  const userEmail = formData.get("email") as string;
-  const foundUser = await db.user.findFirstOrThrow({
-    where: { email: { equals: userEmail } },
+export async function sendPushNotification(id: number) {
+  const foundUser = await prismaClient.user.findFirstOrThrow({
+    where: { id: { equals: id } },
   });
 
   const pushSubscription = foundUser.pushSubscription;

@@ -1,11 +1,9 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
-import { equal } from "assert";
+import { prismaClient } from "../lib/prismaClient";
 
-export const removeUserFromDatabase = async (userEmailAddress: string) => {
-  const db = new PrismaClient();
-  await db.user.delete({
-    where: { email: userEmailAddress },
+export const removeUserFromDatabase = async (number: number) => {
+  await prismaClient.user.delete({
+    where: { id: number },
   });
 };

@@ -1,12 +1,14 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
+import { prismaClient } from "../lib/prismaClient";
 
-export const saveSubscriptionInDatabase = async (pushSubscription: string) => {
-  const db = new PrismaClient();
-  await db.user.create({
+export const saveSubscriptionInDatabase = async (
+  description: string,
+  pushSubscription: string
+) => {
+  await prismaClient.user.create({
     data: {
-      email: "anotherExample@something.com",
+      description: description,
       pushSubscription: JSON.parse(pushSubscription),
     },
   });

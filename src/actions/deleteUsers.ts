@@ -1,10 +1,8 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
+import { prismaClient } from "../lib/prismaClient";
 
 export const deleteUsers = async () => {
-  const db = new PrismaClient();
-
-  await db.user.deleteMany({});
+  await prismaClient.user.deleteMany({});
   console.log("users deleted");
 };
