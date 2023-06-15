@@ -11,7 +11,14 @@ datasource db {
 }
 
 model User {
-  id               Int    @id @default(autoincrement())
+  name             String @id
+  pushSubscription PushSubscription[]
+}
+
+model PushSubscription {
+  id          Int    @id @default(autoincrement())
+  description String
+  user        User   @relation(fields: [userId], references: [name])
+  userId      String
   pushSubscription Json
-  description      String
 }

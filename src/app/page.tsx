@@ -1,23 +1,13 @@
-import { DeleteUsersButton } from "@/components/DeleteUsersButton";
+import { DeleteAllUsersButton } from "@/components/DeleteAllUsersButton";
 import { PermissionsForm } from "@/components/PermissionsForm";
-import Users from "@/components/Users";
-import { PrismaClient } from "@prisma/client";
-import Head from "next/head";
-
-async function getUsers() {
-  const db = new PrismaClient();
-  const users = await db.user.findMany();
-
-  return users;
-}
+import UserList from "@/components/UserList";
 
 export default async function Home() {
-  const users = await getUsers();
   return (
     <main className="container mx-auto">
-      <Users users={users} />
+      <UserList />
       <PermissionsForm />
-      <DeleteUsersButton />
+      <DeleteAllUsersButton />
     </main>
   );
 }

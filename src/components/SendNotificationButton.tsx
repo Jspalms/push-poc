@@ -2,10 +2,12 @@
 
 import { sendPushNotification } from "@/actions/sendPushNotification";
 
-export const SendPushNotificationButton = (props: { id: number }) => {
+export const SendPushNotificationButton = (props: {
+  pushSubscriptionId: number;
+}) => {
   return (
     <button
-      onClick={() => sendPushNotification(props.id)}
+      onClick={() => sendPushNotification(props.pushSubscriptionId)}
       className="border px-2 rounded-lg shadow-lg ml-2"
     >
       Notify
