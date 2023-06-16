@@ -1,15 +1,13 @@
 self.addEventListener("push", function (event) {
   // Handle push notification event
-  const json = event.data.json;
-  console.log({ event, data: event.data, json });
-  const pushData = event.data;
+
+  const pushMessage = event.data.json();
+
   // Process the received push data and show a notification
-  const notificationOptions = {
-    body: pushData?.message,
-    icon: "/path/to/notification-icon.png",
-    // other notification options
-  };
-  event.waitUntil(self.registration.showNotification("when does this change"));
+
+  event.waitUntil(
+    self.registration.showNotification(pushMessage.title, pushMessage.options)
+  );
 });
 
 self.addEventListener("notificationclick", function (event) {

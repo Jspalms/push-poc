@@ -14,7 +14,13 @@ export async function sendPushNotification(pushSubscriptionId: number) {
   console.log(pushSubscription);
   const payload = JSON.stringify({
     title: "test tile",
-    icon: "/vercel.svg",
+    options: {
+      icon: "/vercel.svg",
+      body: "this is a body",
+      // data - arbitary data to send with the notificaiton
+
+      // tag - used for grouping notifications
+    },
   });
 
   const options = {

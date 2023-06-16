@@ -48,11 +48,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 1. Fill in the user ID and the description of the push service
 2. Opt into notifications and submit the form
-3. The applications uses React ServerActions and I've not yet worked out how to respond to changes on the server so it requires a refresh
-4. Send a notification to the user of your choice
+3. Send a notification to the desired subscription by clicking the notify button
 
 ### Notes
 
 - Push notifications are an experimental feature on the current version of safari and the application MUST be added to the users home screen in order to enable notifications
 - Notifications.RequestPermissions() documentation suggests that safari still uses the old callback Syntax, I've not found that to be true
--
+- Push notifications on desktop websites require the browser to be running
