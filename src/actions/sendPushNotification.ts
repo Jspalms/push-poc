@@ -11,15 +11,13 @@ export async function sendPushNotification(pushSubscriptionId: number) {
       where: { id: pushSubscriptionId },
     }
   );
-  console.log(pushSubscription);
   const payload = JSON.stringify({
-    title: "test tile",
+    title: "test tile 2",
     options: {
       icon: "/vercel.svg",
       body: "this is a body",
+      tag: "test",
       // data - arbitary data to send with the notificaiton
-
-      // tag - used for grouping notifications
     },
   });
 
@@ -29,8 +27,6 @@ export async function sendPushNotification(pushSubscriptionId: number) {
       publicKey: process.env.NEXT_PUBLIC_PUSH_SERVICE_PUBLIC_KEY,
       privateKey: process.env.PUSH_SERVICE_PRIVATE_KEY,
     },
-    //topic - optionally provide an identifier that the push service uses to coalesce notifications
-
     TTL: 60,
   };
 

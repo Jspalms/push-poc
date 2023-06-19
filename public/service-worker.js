@@ -1,4 +1,4 @@
-self.addEventListener("push", function (event) {
+self.addEventListener("push", async function (event) {
   // Handle push notification event
 
   const pushMessage = event.data.json();
