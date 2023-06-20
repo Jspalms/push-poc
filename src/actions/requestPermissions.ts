@@ -18,7 +18,7 @@ export const requestPermissions = async (formData: FormData) => {
 
       const stringPushSubscription = JSON.stringify(pushSubscription);
 
-      saveSubscriptionInDatabase(
+      await saveSubscriptionInDatabase(
         userName,
         pushDescription,
         stringPushSubscription
