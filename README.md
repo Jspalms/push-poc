@@ -23,7 +23,7 @@ enter the password then
 
 ```SQL
 
-CREATE DATABASE push_poc
+CREATE DATABASE push_poc;
 ```
 
 run the migrations from prisma by executing
@@ -50,8 +50,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 2. Opt into notifications and submit the form
 3. Send a notification to the desired subscription by clicking the notify button
 
-### Notes
+### To-Do
 
-- Push notifications are an experimental feature on the current version of safari and the application MUST be added to the users home screen in order to enable notifications
-- Notifications.RequestPermissions() documentation suggests that safari still uses the old callback Syntax, I've not found that to be true
-- Push notifications on desktop websites require the browser to be running
+Fix Iphone notifications
+How to see if the current device is registered
+Fix the db bug
+Add some grouping (maybe a form to change the notification message)
+Why is the service worker waiting

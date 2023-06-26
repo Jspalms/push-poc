@@ -7,27 +7,31 @@ import { useRouter } from "next/navigation";
 
 export const PermissionsForm = () => {
   const [browserCapable, setBrowserCapable] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [checked, setChecked] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
     const capable = browserSupportsNotifications();
+    if (capable) {
+      navigator.serviceWorker.register("/service-worker.js");
+    }
     setBrowserCapable(capable);
+    setLoading(false);
   }, []);
-  if (!browserCapable)
+  if (loading) <div>Loading...</div>;
+  if (!browserCapable && !loading)
     return <span>Push notifications are not supported on this browser</span>;
   return (
     <>
       <h2 className="underline"> Sign up for push notifications </h2>
       <form
-        className="my-4 flex flex-col"
         action={async (formData) => {
           await requestPermissions(formData);
-          router.refresh();
         }}
       >
-        <div>
-          <label htmlFor="userName">User identifier : </label>
+        <div className="py-2">
+          <label htmlFor="userName">User identifier: </label>
           <input
             type="text"
             id="userName"
@@ -35,9 +39,9 @@ export const PermissionsForm = () => {
             className="border shadow-inner "
           ></input>
         </div>
-        <div>
+        <div className="py-2">
           <label htmlFor="pushDescription">
-            Description for this pushSubscription :
+            Description for this pushSubscription:
           </label>
           <input
             type="text"
@@ -46,7 +50,7 @@ export const PermissionsForm = () => {
             className="border shadow-inner"
           ></input>
         </div>
-        <div>
+        <div className="py-2">
           <label htmlFor="permissionsCheck">Opt in to notifications? : </label>
           <input
             id="permissionsCheck"

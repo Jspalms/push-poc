@@ -13,7 +13,7 @@ export const DeleteAllUsersButton = () => {
       }}
       className="bg-red-400 border p-2 rounded-lg shadow-lg my-4"
     >
-      Delete Users
+      Delete All Users
     </button>
   );
 };

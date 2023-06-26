@@ -6,7 +6,11 @@ self.addEventListener("push", async function (event) {
   // Process the received push data and show a notification
 
   event.waitUntil(
-    self.registration.showNotification(pushMessage.title, pushMessage.options)
+    self.registration
+      .showNotification(pushMessage.title, pushMessage.options)
+      .catch((error) => {
+        console.error("Error displaying notification:", error);
+      })
   );
 });
 

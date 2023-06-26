@@ -5,19 +5,24 @@ import deleteSubscriptionFromDatabase from "./deleteSubscriptionFromDatabase";
 
 const webpush = require("web-push");
 
-export async function sendPushNotification(pushSubscriptionId: number) {
+export async function sendPushNotification(formData: FormData) {
+  console.log(formData);
+  console.log("sendPushNotification");
+  const pushId = formData.get("pushId") as string;
+  const pushTitle = formData.get("pushTitle");
+  const pushMessage = formData.get("pushMessage");
+  const pushTag = formData.get("pushTag");
   const pushSubscription = await prismaClient.pushSubscription.findFirstOrThrow(
     {
-      where: { id: pushSubscriptionId },
+      where: { id: +pushId },
     }
   );
   const payload = JSON.stringify({
-    title: "test tile 2",
+    title: pushTitle,
     options: {
-      icon: "/vercel.svg",
-      body: "this is a body",
-      tag: "test",
-      // data - arbitary data to send with the notificaiton
+      icon: "/images/icons/icon-96x96.png",
+      body: pushMessage,
+      tag: pushTag,
     },
   });
 
@@ -42,6 +47,4 @@ export async function sendPushNotification(pushSubscriptionId: number) {
     console.log("Subscription has expired or is no longer valid: ");
     return deleteSubscriptionFromDatabase(pushSubscription.id);
   }
-
-  console.log(response);
 }
