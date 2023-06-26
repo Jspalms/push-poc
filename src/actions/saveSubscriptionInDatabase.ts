@@ -7,7 +7,6 @@ export const saveSubscriptionInDatabase = async (
   pushDescription: string,
   pushSubscription: string
 ) => {
-  console.log({ name, pushDescription, pushSubscription });
   const existingUser = await prismaClient.user.findFirst({
     where: { name: name },
   });

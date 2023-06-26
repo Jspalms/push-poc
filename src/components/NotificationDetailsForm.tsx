@@ -2,7 +2,7 @@ import { sendPushNotification } from "@/actions/sendPushNotification";
 
 export default function NotificationDetailsForm() {
   return (
-    <div className="my-4">
+    <div className="border p-8 mt-4 shadow-md shadow-[#da4c68] w-fit">
       <h2 className="underline pb-4">Customise notification information</h2>
       <form id="notificationDetails" action={sendPushNotification}>
         <div className="py-2">

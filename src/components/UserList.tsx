@@ -13,7 +13,7 @@ export default async function UserList() {
   const users = await getUsers();
 
   return (
-    <div className="py-4 ">
+    <div className="border p-8 mt-4 shadow-md shadow-[#daa64c] w-fit">
       <h1 className="underline">Users</h1>
       <span>
         There are currently {users.length} users who are signed up for

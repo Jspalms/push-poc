@@ -23,11 +23,12 @@ export const PermissionsForm = () => {
   if (!browserCapable && !loading)
     return <span>Push notifications are not supported on this browser</span>;
   return (
-    <>
+    <div className="border p-8 mt-4 shadow-md shadow-[#644cda] w-fit">
       <h2 className="underline"> Sign up for push notifications </h2>
       <form
         action={async (formData) => {
           await requestPermissions(formData);
+          setTimeout(() => router.refresh(), 1000);
         }}
       >
         <div className="py-2">
@@ -40,9 +41,7 @@ export const PermissionsForm = () => {
           ></input>
         </div>
         <div className="py-2">
-          <label htmlFor="pushDescription">
-            Description for this pushSubscription:
-          </label>
+          <label htmlFor="pushDescription">Subscription Description:</label>
           <input
             type="text"
             id="pushDescription"
@@ -69,6 +68,6 @@ export const PermissionsForm = () => {
           Submit
         </button>
       </form>
-    </>
+    </div>
   );
 };

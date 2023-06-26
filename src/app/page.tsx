@@ -5,13 +5,13 @@ import UserList from "@/components/UserList";
 
 export default async function Home() {
   return (
-    <main className="container mx-auto">
-      <PermissionsForm />
-
-      <NotificationDetailsForm />
-      <UserList />
-
-      <DeleteAllUsersButton />
+    <main className="">
+      <div className="container mx-auto">
+        <PermissionsForm />
+        <NotificationDetailsForm />
+        <UserList />
+        <DeleteAllUsersButton />
+      </div>
     </main>
   );
 }
