@@ -26,11 +26,21 @@ export default function NotificationDetailsForm() {
         <div className="py-2">
           <label htmlFor="pushTag">Push Tag: </label>
           <input
+            disabled
             type="text"
             id="pushTag"
             name="pushTag"
             className="border shadow-inner "
           />
+        </div>
+        <div className="py-2">
+          <label htmlFor="pushIcon">Push Icon: </label>
+          <select name="icon" id="pushIcon" className="border">
+            <option value="beyond.ico">Beyond</option>
+            <option value="cat.jpg">Cat</option>
+            <option value="goat.png">Goat</option>
+            <option value="pizza.jpg">Pizza</option>
+          </select>
         </div>
       </form>
     </div>

@@ -6,12 +6,11 @@ import deleteSubscriptionFromDatabase from "./deleteSubscriptionFromDatabase";
 const webpush = require("web-push");
 
 export async function sendPushNotification(formData: FormData) {
-  console.log(formData);
-  console.log("sendPushNotification");
   const pushId = formData.get("pushId") as string;
   const pushTitle = formData.get("pushTitle");
   const pushMessage = formData.get("pushMessage");
   const pushTag = formData.get("pushTag");
+  const icon = formData.get("icon");
   const pushSubscription = await prismaClient.pushSubscription.findFirstOrThrow(
     {
       where: { id: +pushId },
@@ -20,9 +19,8 @@ export async function sendPushNotification(formData: FormData) {
   const payload = JSON.stringify({
     title: pushTitle,
     options: {
-      icon: "/images/icons/icon-96x96.png",
+      icon: icon,
       body: pushMessage,
-      tag: pushTag,
     },
   });
 
@@ -35,7 +33,9 @@ export async function sendPushNotification(formData: FormData) {
     TTL: 60,
   };
 
-  //send notification automatically encrypts the payload
+  //see if there is a sendMany or if there is a hub to queue up the messages
+  //double check to make sure that no registration is needed
+  //different connection string per tenant
 
   const response = await webpush.sendNotification(
     pushSubscription.pushSubscription,

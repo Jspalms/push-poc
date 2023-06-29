@@ -5,6 +5,8 @@ self.addEventListener("push", async function (event) {
 
   // Process the received push data and show a notification
 
+  console.log(pushMessage);
+
   event.waitUntil(
     self.registration
       .showNotification(pushMessage.title, pushMessage.options)
