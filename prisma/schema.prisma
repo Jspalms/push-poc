@@ -17,7 +17,6 @@ model User {
 
 model PushSubscription {
   id          Int    @id @default(autoincrement())
-  description String
   user        User   @relation(fields: [userId], references: [name])
   userId      String
   pushSubscription Json

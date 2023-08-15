@@ -27,7 +27,8 @@ export const PermissionsForm = () => {
       <h2 className="underline"> Sign up for push notifications </h2>
       <form
         action={async (formData) => {
-          await requestPermissions(formData);
+          const formName = formData.get("userName") as string;
+          await requestPermissions(formName);
           setTimeout(() => router.refresh(), 1000);
         }}
       >
@@ -40,15 +41,7 @@ export const PermissionsForm = () => {
             className="border shadow-inner "
           ></input>
         </div>
-        <div className="py-2">
-          <label htmlFor="pushDescription">Subscription Description:</label>
-          <input
-            type="text"
-            id="pushDescription"
-            name="pushDescription"
-            className="border shadow-inner"
-          ></input>
-        </div>
+
         <div className="py-2">
           <label htmlFor="permissionsCheck">Opt in to notifications? : </label>
           <input

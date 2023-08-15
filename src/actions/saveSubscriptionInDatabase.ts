@@ -4,7 +4,6 @@ import { prismaClient } from "../lib/prismaClient";
 
 export const saveSubscriptionInDatabase = async (
   name: string,
-  pushDescription: string,
   pushSubscription: string
 ) => {
   const existingUser = await prismaClient.user.findFirst({
@@ -15,7 +14,6 @@ export const saveSubscriptionInDatabase = async (
     await prismaClient.pushSubscription.create({
       data: {
         userId: name,
-        description: pushDescription,
         pushSubscription: JSON.parse(pushSubscription),
       },
     });
@@ -25,7 +23,6 @@ export const saveSubscriptionInDatabase = async (
         name: name,
         pushSubscription: {
           create: {
-            description: pushDescription,
             pushSubscription: JSON.parse(pushSubscription),
           },
         },

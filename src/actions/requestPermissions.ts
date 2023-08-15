@@ -1,11 +1,7 @@
 import { saveSubscriptionInDatabase } from "./saveSubscriptionInDatabase";
 
-export const requestPermissions = async (formData: FormData) => {
-  const formName = formData.get("userName") as string;
+export const requestPermissions = async (formName: string) => {
   const userName = formName.trim().toLocaleLowerCase();
-
-  const pushDescription = formData.get("pushDescription") as string;
-
   let response = await Promise.resolve(Notification.requestPermission());
   registerUserForPushNotifications(response);
 
@@ -20,11 +16,7 @@ export const requestPermissions = async (formData: FormData) => {
 
       const stringPushSubscription = JSON.stringify(pushSubscription);
 
-      await saveSubscriptionInDatabase(
-        userName,
-        pushDescription,
-        stringPushSubscription
-      );
+      await saveSubscriptionInDatabase(userName, stringPushSubscription);
     }
   }
 };

@@ -1,40 +1,34 @@
 "use client";
 
-import { useTransition } from "react";
-
-const handleClick = (pushId: string) => {
+const handleClick = (userName: string) => {
   const form = document.getElementById(
     "notificationDetails"
   ) as HTMLFormElement;
 
-  const pushInput = document.getElementById("pushId");
+  const pushInput = form.querySelector("#userName");
 
   if (pushInput) {
     form.removeChild(pushInput);
   }
 
   const hiddenInput = document.createElement("input");
-  hiddenInput.id = "pushId";
+  hiddenInput.id = "userName";
   hiddenInput.type = "hidden";
-  hiddenInput.name = "pushId";
-  hiddenInput.value = pushId;
+  hiddenInput.name = "userName";
+  hiddenInput.value = userName;
   form.appendChild(hiddenInput);
 
   form.requestSubmit();
 };
 
-export const SendPushNotificationButton = (props: {
-  pushSubscriptionId: number;
-}) => {
-  let [isPending, startTransition] = useTransition();
-
+export const SendPushNotificationButton = (props: { userName: string }) => {
   return (
     <button
-      id="test"
+      id="sendNotificationButton"
       type="submit"
       onClick={(e) => {
         e.preventDefault();
-        handleClick(props.pushSubscriptionId.toString());
+        handleClick(props.userName);
       }}
       form="notificationDetails"
       className="border px-2 rounded-lg shadow-lg ml-2"
